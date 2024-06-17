@@ -72,7 +72,7 @@ body {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #858796;
+    color: #bdd2ff;
     text-align: left;
     background-color: #fff
 }
@@ -1776,7 +1776,7 @@ pre code {
 .table {
     width: 100%;
     margin-bottom: 1rem;
-    color: #858796
+    color: #ffffff
 }
 
 .table td,
@@ -1792,7 +1792,7 @@ pre code {
 }
 
 .table tbody+tbody {
-    border-top: 2px solid #e3e6f0
+    border-top: 2px solid #4c4c4c
 }
 
 .table-sm td,
@@ -4997,7 +4997,7 @@ input[type=submit].btn-block {
     flex-direction: column;
     min-width: 0;
     word-wrap: break-word;
-    background-color: #fff;
+    background-color: #474e6d;
     background-clip: border-box;
     border: 1px solid #e3e6f0;
     border-radius: .35rem
@@ -5029,6 +5029,25 @@ input[type=submit].btn-block {
 .card>.list-group+.card-footer {
     border-top: 0
 }
+
+.card-login {
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.card-login .card-body {
+    padding: 2rem;
+}
+
+.btn-user {
+    font-size: 1rem;
+    border-radius: 10rem;
+    padding: 0.75rem 1rem;
+}
+
+
 
 .card-body {
     flex: 1 1 auto;
@@ -6340,6 +6359,20 @@ a.close.disabled {
     border-top-left-radius: calc(.3rem - 1px);
     border-top-right-radius: calc(.3rem - 1px)
 }
+
+.preview-img-small {
+    max-width: 200px; /* Ajusta el tamaño a tu preferencia */
+    max-height: 250px; /* Ajusta el tamaño a tu preferencia */
+    object-fit: cover; /* Ajusta la imagen dentro del contenedor */
+    /*border-radius: 50%; /* Esto hace que la imagen sea redonda */
+}
+
+.img-thumbnail {
+    display: inline-block; /* Asegura que el contenedor se ajuste al contenido */
+    padding: 0; /* Remueve cualquier padding adicional */
+    border: none; /* Remueve cualquier borde adicional */
+}
+
 
 .modal-header .close {
     padding: 1rem 1rem;
@@ -8556,7 +8589,7 @@ button.bg-dark:hover {
 
 .mb-4,
 .my-4 {
-    margin-bottom: 1.5rem !important
+    margin-bottom: 2.5rem !important
 }
 
 .ml-4,
@@ -11099,9 +11132,12 @@ a:focus {
 }
 
 .bg-gradient-primary {
-    background-color: #4e73df;
-    background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
-    background-size: cover
+    background-color: #a5d6fe;
+    /* Azul cielo */
+    background-image: linear-gradient(0deg, #01257D 50%, #00FFFF 160%);
+
+    /* De azul cielo a rosa pastel */
+    background-size: cover;
 }
 
 .bg-gradient-secondary {
@@ -11227,7 +11263,7 @@ a:focus {
 }
 
 .text-gray-900 {
-    color: #3a3b45 !important
+    color: #fff !important
 }
 
 .icon-circle {
@@ -12102,10 +12138,11 @@ a:focus {
 }
 
 .bg-login-image {
-    background: url("{% static 'base/img/logo.png' %}");
+    background: url("/static/base/img/logo.png");
     background-position: center;
     background-size: cover;
 }
+
 
 .bg-register-image {
     background: url(https://source.unsplash.com/Mv9hjnEUHR4/600x800);

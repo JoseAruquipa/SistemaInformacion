@@ -118,11 +118,30 @@
                 <div id="collapseCompras" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                   <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Entradas</h6>
+                    {% if perms.cmp.view_compras %}
                     <a class="collapse-item" href="{% url 'cmp:compras_list' %}">Compras</a>
+                    {% endif %}
                   </div>
                 </div>
               </li>
 
+<!-- Nav Item - Pages Collapse Menu Empleados -->          
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEmpleados" aria-expanded="true" aria-controls="collapseEmpleados">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Empleados</span>
+                </a>
+                <div id="collapseEmpleados" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Gestión de Empleados</h6>
+                        {% if perms.empleados.view_empleado %}
+                        <a class="collapse-item" href="{% url 'empleado_list' %}">Lista de Empleados</a>
+                        {% endif %}
+
+                        <!-- <a class="collapse-item" href="{% url 'empleado_create' %}">Nuevo Empleado</a> -->
+                    </div>
+                </div>
+            </li>                    
 
 
 
@@ -434,7 +453,7 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                {% block page_content %}
+                    {% block page_content %}
                 <div class="container-fluid">
 
                     <!-- Page Heading -->

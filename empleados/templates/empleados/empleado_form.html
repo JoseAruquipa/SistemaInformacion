@@ -1,0 +1,87 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block page_content %}
+<!-- Dropdown Card Example -->
+<div class="card shadow mb-4">
+    <!-- Card Header - Dropdown -->
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">{{ form.instance.pk|yesno:"Editar Empleado,Crear Nuevo Empleado" }}</h6>
+    </div>
+    <!-- Card Body -->
+    <div class="card-body">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="form-group text-center">
+                        <div class="img-thumbnail">
+                            <img id="preview-img" src="{% if form.instance.foto %}{{ form.instance.foto.url }}{% else %}{% static 'base/img/user.png' %}{% endif %}" alt="Foto de Perfil" class="img-fluid preview-img-small">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        {{ form.nombre.label_tag }}
+                        {{ form.nombre|add_class:"form-control form-control-sm" }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.apellido.label_tag }}
+                        {{ form.apellido|add_class:"form-control form-control-sm" }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.email.label_tag }}
+                        {{ form.email|add_class:"form-control form-control-sm" }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.telefono.label_tag }}
+                        {{ form.telefono|add_class:"form-control form-control-sm" }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.direccion.label_tag }}
+                        {{ form.direccion|add_class:"form-control form-control-sm" }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.fecha_nacimiento.label_tag }}
+                        {{ form.fecha_nacimiento|add_class:"form-control form-control-sm" }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.foto.label_tag }}
+                        {{ form.foto|add_class:"form-control-file" }}
+                    </div>
+                </div>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary btn-user">Guardar</button>
+                <a href="{% url 'empleado_list' %}" class="btn btn-secondary btn-user">Cancelar</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    $(function () {
+        $("#id_fecha_nacimiento").datetimepicker({
+            format: 'Y-m-d',
+            timepicker: false
+        });
+
+        const previewImg = document.getElementById('preview-img');
+        const fotoInput = document.getElementById('{{ form.foto.auto_id }}');
+
+        fotoInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function() {
+                    previewImg.src = reader.result;
+                }
+                reader.readAsDataURL(file);
+            } else {
+                previewImg.src = "{% static 'base/img/user.png' %}";
+            }
+        });
+    });
+</script>
+{% endblock %}

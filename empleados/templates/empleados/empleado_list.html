@@ -1,0 +1,75 @@
+{% extends 'base/base.html' %}
+
+{% block page_content %}
+<!-- Dropdown Card Example -->
+<div class="card shadow mb-4">
+    <!-- Card Header - Dropdown -->
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">Listado de Empleados</h6>
+        <div class="dropdown no-arrow">
+            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                <div class="dropdown-header">Acciones</div>
+                <a class="dropdown-item" href="{% url 'empleado_create' %}"><i class="far fa-calendar-plus"></i> Nuevo Empleado</a>
+            </div>
+        </div>
+    </div>
+    <!-- Card Body -->
+    <div class="card-body">
+        {% if not empleados %}
+            <div class="alert alert-info">No hay Empleados</div>
+        {% else %}
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>
+                        <th>Dirección</th>
+                        <th>F. Nacimiento</th>
+                        <th>Foto</th>
+                        <th class="all">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for empleado in empleados %}
+                    <tr>
+                        <td>{{ empleado.id }}</td>
+                        <td>{{ empleado.nombre }}</td>
+                        <td>{{ empleado.apellido }}</td>
+                        <td>{{ empleado.email }}</td>
+                        <td>{{ empleado.telefono }}</td>
+                        <td>{{ empleado.direccion }}</td>
+                        <td>{{ empleado.fecha_nacimiento }}</td>
+                        <td>
+                            {% if empleado.foto %}
+                                <img src="{{ empleado.foto.url }}" alt="{{ empleado.nombre }}" width="50">
+                            {% else %}
+                                No hay foto
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{% url 'empleado_update' empleado.id %}" class="btn btn-warning btn-circle" role="button"><i class="far fa-edit"></i></a>
+                            <a href="{% url 'empleado_delete' empleado.id %}" class="btn btn-danger btn-circle" role="button"><i class="far fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block js_page %}
+<script>
+    $(document).ready(function(){
+        $('.table').DataTable();
+    });
+</script>
+{% endblock %}
+

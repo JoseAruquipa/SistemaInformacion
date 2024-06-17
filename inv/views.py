@@ -13,6 +13,8 @@ from .forms import CategoriaForm,SubCategoriaForm,MarcaForm,UMForm,ProductoForm
 
 from bases.views import SinPrivilegios
 
+
+
 class CategoriaView(SinPrivilegios, \
     generic.ListView):
     permission_required = "inv.view_categoria"
@@ -36,6 +38,7 @@ class CategoriaNew(SuccessMessageMixin, SinPrivilegios,generic.CreateView):
 
 class CategoriaEdit(SuccessMessageMixin,SinPrivilegios, \
     generic.UpdateView):
+    permission_required="inv.change_categoria"
     model=Categoria
     template_name="inv/categoria_form.html"
     context_object_name="obj"
